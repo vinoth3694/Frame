@@ -4,7 +4,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.w3schools.pages.HomePage;
 import com.w3schools.pages.LoginPage;
-//import com.w3schools.pages.Profile;
+import com.w3schools.pages.Profile;
 
 /*
  * This class is going to contain all the reusable methods from W3 schools application

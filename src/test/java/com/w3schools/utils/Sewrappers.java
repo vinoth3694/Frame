@@ -38,10 +38,15 @@ public class Sewrappers {
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 			System.out.println("Browser launched successfully");
+			
+			//to capture logs in the report
+			Reports.reportStep("PASS","Chrome browser launched successfully");
 
 		}
 		catch(Exception ex)
 		{
+			Reports.reportStep("FAIL","Problem while launching the browser");
+
 			System.out.println("Problem while launching the browser");
 			ex.printStackTrace();
 
@@ -54,11 +59,13 @@ public class Sewrappers {
 		try
 		{
 			driver.close();
-			System.out.println("Current browser window closed successfully");
+			Reports.reportStep("PASS","Current browser window closed successfully");
+
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Problem while closing the current browser");
+			Reports.reportStep("FAIL","Problem while closing the current browser");
+			ex.printStackTrace();
 		}
 	}
 
@@ -68,11 +75,13 @@ public class Sewrappers {
 		try
 		{
 			driver.quit();
-			System.out.println("All browsers closed successfully");
+			Reports.reportStep("PASS","All browsers closed successfully");
+
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Problem while closing the browsers");
+			Reports.reportStep("FAIL","Problem while closing the browsers");
+
 		}
 	}
 
@@ -83,9 +92,13 @@ public class Sewrappers {
 		{
 			element.clear();
 			element.sendKeys(text);
+			Reports.reportStep("PASS","Typed the text "+text+" successfully");
+
 		}
 		catch(Exception ex)
 		{
+			Reports.reportStep("FAIL","Problem whle typing the "+text);
+
 			ex.printStackTrace();
 		}
 	}
@@ -96,9 +109,13 @@ public class Sewrappers {
 		try
 		{
 			ele.click();
+			Reports.reportStep("PASS","Successfully clicked the element");
+
 		}
 		catch(Exception ex)
 		{
+			Reports.reportStep("FAIL","Problem while clicking the element");
+
 			ex.printStackTrace();
 		}
 	}
@@ -111,9 +128,13 @@ public class Sewrappers {
 		{
 			Select sel = new Select(ele);
 			sel.selectByIndex(index);
+			Reports.reportStep("PASS","Successfully selected the value based on index");
+
 		}
 		catch(Exception ex)
 		{
+			Reports.reportStep("FAIL","Problem while selecting the value based on index");
+
 			ex.printStackTrace();
 		}
 	}
@@ -157,9 +178,13 @@ public class Sewrappers {
 		{
 			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(timeout));
 			wait.until(ExpectedConditions.visibilityOf(ele));
+			Reports.reportStep("PASS","Successfully waited for the element using explicit wait ");
+
 		}
 		catch(Exception ex)
 		{
+			Reports.reportStep("FAIL","Problem while waiting for the element ");
+
 			ex.printStackTrace();
 		}
 	}
@@ -258,6 +283,7 @@ public class Sewrappers {
 		}
 	}
 	
+	//SwitchTo Frames by Index
 	public void selectFrameByIndex(int index)
 	{
 		try
@@ -270,7 +296,7 @@ public class Sewrappers {
 		}
 	}
 	
-	
+	//SwitchTo Frames by Id
 	public void selectFrameByNameOrId(String nameId)
 	{
 		try
@@ -283,7 +309,7 @@ public class Sewrappers {
 		}
 	}
 	
-	
+	//SwitchTo Frame by WebElemet
 	public void selectFrameByWebElement(WebElement ele)
 	{
 		try
@@ -351,6 +377,7 @@ public class Sewrappers {
 
 	//JavascriptExecutor --> click, scrollUp, scrollDown , write for all actions we have seen
 	
+	//To ScrollDown
 	public void javascriptExecutorScrollVertical(int scrolldownValue)
 	{
 		try
@@ -366,7 +393,7 @@ public class Sewrappers {
 		}
 	}
 	
-
+	//To ScrollUp
 	
 	public void javascriptExecutorScrollHorizontal(int scrollupValue)
 	{
@@ -374,7 +401,7 @@ public class Sewrappers {
 		{
 			JavascriptExecutor js = (JavascriptExecutor)driver;
 
-			//To ScrollDown
+			
 			js.executeScript("window.scrollBy("+scrollupValue+",0);");
 		}
 		catch(Exception ex)
@@ -382,7 +409,28 @@ public class Sewrappers {
 			ex.printStackTrace();
 		}
 	}
+	
+	
+	///////ScrollTo
+	public void javascriptExecutorScrollToWebelement(int scrollDownValue)
+	{
+		try
+		{
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+
+			//To ScrollDown to the WebElement
+			js.executeScript("window.scrollTo(0,"+scrollDownValue+");");
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+	
 		
+		
+	//To ScrollDown to the End of the Content
+	
 	public void javascriptExecutorEndContent()
 	{
 		try
@@ -397,6 +445,8 @@ public class Sewrappers {
 			ex.printStackTrace();
 		}
 	}
+	
+	//To ScrollUp to the Starting of the Content
 	
 	public void javascriptExecutorStartingContent()
 	{
@@ -413,6 +463,8 @@ public class Sewrappers {
 		}
 	}
 	
+	//Scroll Right
+	
 	public void javascriptExecutorScrollRight()
 	{
 		try
@@ -428,7 +480,8 @@ public class Sewrappers {
 			ex.printStackTrace();
 		}
 	}
-	
+
+	//Print Title
 	public void javascriptExecutorTitle()
 	{
 		try
@@ -609,6 +662,7 @@ public class Sewrappers {
 
 
 }
+
 
 
 

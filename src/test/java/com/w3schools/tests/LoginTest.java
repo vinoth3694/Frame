@@ -29,7 +29,7 @@ public class LoginTest extends Sewrappers {
 			Reports.reportStep("INFO","Assertion passed by title");
 			
 			//To Enter into Profile element in HomePge
-			//w3.pageProfile("estoyVignesh1");
+			//w3.pageProfile("N S");
 			
 					
 		}
